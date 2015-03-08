@@ -1,4 +1,4 @@
-class os-puppet-development-lab(
+class ospuppetdevelopmentlab(
   $message = "Configuring os-puppet-development-lab"
   ) { 
       notify { $message: }
