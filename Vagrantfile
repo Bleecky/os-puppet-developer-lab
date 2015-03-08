@@ -20,7 +20,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box_download_insecure = true
   config.proxy.no_proxy = HOSTS_NO_PROXY
 
-  (1..2).each do |i|
+  (1..1).each do |i|
       config.vm.define "puppetagent0#{i}" do |puppetagent_config|
       puppetagent_config.vm.box = BOX_URI
       puppetagent_config.vm.network :private_network, ip: "10.1.172.1#{i}"    
