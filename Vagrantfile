@@ -51,7 +51,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       override.proxy.enabled = false
     end
     #puppetmaster_config.vm.provision "shell",
-    #inline: "rpm -ivh http://yum.puppetlabs.com/puppetlabs-release-el-6.noarch.rpm; yum install -y puppet-server 3.7.4-1"     
+    #inline: "rpm -ivh http://yum.puppetlabs.com/puppetlabs-release-el-6.noarch.rpm; yum install -y puppet-server 3.7.4-1"    
   end
   config.vm.provision :hosts do |provisioner|
         provisioner.add_host '10.1.172.10', ['puppetmaster.osuk-puppet-lab.org', 'puppet', 'puppetmaster']

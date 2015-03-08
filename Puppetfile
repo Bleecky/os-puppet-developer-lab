@@ -4,11 +4,7 @@ forge "http://forge.puppetlabs.com"
 mod "saz/vim"
 mod "mjanser/eclipse"
 
-# Modules from Github using various references
-#mod 'notifyme',
-#  :git => 'git://github.com/glarizza/puppet-notifyme',
+# os-puppet-development-lab for managing and keeping build upto dat
+mod 'os-puppet-development-lab',
+  :git => 'git://github.com/Bleecky/os-puppet-development-lab',
 #  :ref => '50c01703b2e3e352520a9a2271ea4947fe17a51f'
-#
-#mod 'profiles',
-#  :git => 'git://github.com/glarizza/puppet-profiles',
-#  :ref => '3611ae4253ff01762f9bda1d93620edf8f9a3b22'
