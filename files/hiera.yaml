@@ -1,0 +1,13 @@
+---
+:backends:
+    - yaml
+
+:hierarchy:
+    - "%{environment}"
+    - common
+    - defaults
+
+:yaml:
+    :datadir: '/etc/puppet/hieradata/yaml'
+
+:logger: console
