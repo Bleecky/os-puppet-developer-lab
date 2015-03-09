@@ -10,5 +10,18 @@ node /^puppetagent\d+$/ {
 
 # Puppet Master Server
 node 'puppetmaster.osuk-puppet-lab.org' {
-  notify { $message: }  
+  notify { $message: }
+  
+	class { 'java':
+    distribution => 'oracle-jdk',
+  }
+	class { 'eclipse':
+	  method          => 'download',
+	  release_name    => 'luna',
+	  service_release => 'SR1'
+	}
+	
+	include eclipse::plugin::geppetto
+	include eclipse::plugin::ruby
+	
 }  
