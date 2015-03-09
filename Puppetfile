@@ -4,7 +4,7 @@ forge "http://forge.puppetlabs.com"
 mod "saz/vim"
 mod "mjanser/eclipse"
 
-# os-puppet-development-lab for managing and keeping build upto dat
+# os-puppet-development-lab for managing and keeping build up to dat
 mod 'ospuppetdevelopmentlab',
-  :git => 'git://github.com/Bleecky/os-puppet-development-lab'
+  :git => 'git://github.com/Bleecky/os-puppet-developer-lab'
 #  :ref => '50c01703b2e3e352520a9a2271ea4947fe17a51f'
