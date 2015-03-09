@@ -12,12 +12,12 @@ file {'/etc/puppet/hiera.yaml':
   source => "${config_dir}/hiera.yaml",
 }
 
-file {'/etc/puppet/manifests/nodes.pp'
+file {'/etc/puppet/manifests/nodes.pp':
   ensure  => present,
   source  => "${config_dir}/nodes.pp"
 }
 
-file {'/etc/puppet/manifests/site.pp'
+file {'/etc/puppet/manifests/site.pp':
   ensure  => present,
   source  => "${config_dir}/nodes.pp"
 }
