@@ -21,3 +21,7 @@ file {'/etc/puppet/manifests/site.pp':
   ensure  => present,
   source  => "${config_dir}/site.pp"
 }
+
+service {'puppetmaster':
+  ensure => running
+}
