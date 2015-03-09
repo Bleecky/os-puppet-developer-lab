@@ -13,7 +13,7 @@ node 'puppetmaster.osuk-puppet-lab.org' {
   notify { $message: }
   
 	class { 'java':
-    distribution => 'oracle-jdk',
+    distribution => 'jdk',
   }
 	class { 'eclipse':
 	  method          => 'download',
