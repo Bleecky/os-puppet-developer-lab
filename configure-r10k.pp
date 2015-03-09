@@ -10,7 +10,7 @@ class { 'r10k':
   version           => '1.4.1',
   sources           => {
     'puppet' => {
-      'remote'  => 'https://github.com/Bleecky/os-puppet-development-lab',
+      'remote'  => 'https://github.com/Bleecky/os-puppet-developer-lab',
       'basedir' => "${::settings::confdir}/environments",
       'prefix'  => false,
     }
