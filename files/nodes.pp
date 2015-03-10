@@ -15,13 +15,5 @@ node 'puppetmaster.osuk-puppet-lab.org' {
 	class { 'java':
     distribution => 'jdk',
   }
-	class { 'eclipse':
-	  method          => 'download',
-	  release_name    => 'luna',
-	  service_release => 'SR1'
-	}
-	
-	include eclipse::plugin::geppetto
-	include eclipse::plugin::ruby
 	
 }  
