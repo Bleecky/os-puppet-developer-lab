@@ -6,7 +6,7 @@ yum install -y puppet-server 3.7.4-1
 puppet module install zack/r10k
 
 # Configure r10k
-puppet apply /tmp/os-puppet-developer-lab/manifests/configure-r10k.pp
+puppet apply /tmp/os-puppet-developer-lab/config/manifests/configure-r10k.pp
 
 # Configure Puppet
-puppet apply /tmp/os-puppet-developer-lab/manifests/configure-puppet-master.pp
+puppet apply /tmp/os-puppet-developer-lab/config/manifests/configure-puppet-master.pp
