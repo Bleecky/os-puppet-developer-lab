@@ -35,6 +35,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       end
       puppetagent_config.vm.provision "shell",
       inline: "yum install -y git;cd /tmp;git clone https://github.com/Bleecky/os-puppet-developer-lab.git"
+      puppetagent_config.vm.provision "shell",
+      inline: "rpm -ivh http://yum.puppetlabs.com/puppetlabs-release-el-6.noarch.rpm;yum install -y puppet 3.7.4-1"
     end
   end
         
@@ -51,7 +53,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       override.proxy.enabled = false
     end
     puppetmaster_config.vm.provision "shell",
-    inline: "yum install -y git;cd /tmp;git clone https://github.com/Bleecky/os-puppet-developer-lab.git"    
+    inline: "yum install -y git;cd /tmp;git clone https://github.com/Bleecky/os-puppet-developer-lab.git"
+    puppetmaster_config.vm.provision "shell",
+    inline: "rpm -ivh http://yum.puppetlabs.com/puppetlabs-release-el-6.noarch.rpm;yum install -y puppet-server 3.7.4-1;puppet module install zack/r10k"   
   end
   config.vm.provision :hosts do |provisioner|
     provisioner.add_host '10.1.172.10', ['puppetmaster.osuk-puppet-lab.org', 'puppet', 'puppetmaster']
