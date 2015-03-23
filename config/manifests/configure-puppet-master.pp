@@ -12,6 +12,18 @@ file {'/etc/puppet/hiera.yaml':
   source => "${config_dir}/hiera.yaml",
 }
 
+file {['/etc/puppet/hieradata','/etc/puppet/hieradata/yaml']: 
+  ensure  => directory
+}
+
+file {'/etc/puppet/hieradata/yaml/puppetagent01.osuk-puppet-lab.org.yaml':
+  ensure  => present,
+}
+
+file {'/etc/puppet/hieradata/yaml/puppetagent02.osuk-puppet-lab.org.yaml':
+  ensure  => present,
+}
+
 file {'/etc/puppet/manifests/nodes.pp':
   ensure  => present,
   source  => "${config_dir}/nodes.pp"
