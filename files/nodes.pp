@@ -5,15 +5,10 @@
 $message = "Puppet run on ${fqdn}"
 # Puppet Agents
 node /^puppetagent\d+$/ {
-  notify { $message: } 
+  notify { $message: }
 }
 
 # Puppet Master Server
 node 'puppetmaster.osuk-puppet-lab.org' {
   notify { $message: }
-  
-	class { 'java':
-    distribution => 'jdk',
-  }
-	
-}  
+}

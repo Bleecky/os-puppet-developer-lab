@@ -12,7 +12,7 @@ file {'/etc/puppet/hiera.yaml':
   source => "${config_dir}/hiera.yaml",
 }
 
-file {['/etc/puppet/hieradata','/etc/puppet/hieradata/yaml']: 
+file {['/etc/puppet/hieradata','/etc/puppet/hieradata/yaml']:
   ensure  => directory
 }
 
@@ -34,6 +34,15 @@ file {'/etc/puppet/manifests/site.pp':
   source  => "${config_dir}/site.pp"
 }
 
+file {'/etc/puppet/environments/production/manifests/nodes.pp':
+  ensure  => link,
+  target  => "/etc/puppet/manifests/nodes.pp"
+}
+
+file {'/etc/puppet/environments/production/manifests/site.pp':
+  ensure  => link,
+  target  => "/etc/puppet/manifests/site.pp"
+}
 service {'puppetmaster':
   ensure => running
 }
