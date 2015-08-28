@@ -1,7 +1,10 @@
 forge "http://forge.puppetlabs.com"
 
 # Modules from the Puppet Forge
+mod 'puppetlabs/inifile', "2.0.0"
+mod 'puppetlabs/firewall', "2.0.0"
 mod 'puppetlabs/java', "1.3.0"
+mod 'puppetlabs/postgresql', "5.0.0"
 mod "puppetlabs/puppetdb"
 mod 'puppetlabs/stdlib', "4.5.1"
 mod "saz/vim"
