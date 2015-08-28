@@ -2,6 +2,7 @@ forge "http://forge.puppetlabs.com"
 
 # Modules from the Puppet Forge
 mod 'puppetlabs/java', "1.3.0"
+mod 'puppetlabs/puppetdb"
 mod 'puppetlabs/stdlib', "4.5.1"
 mod "saz/vim"
 

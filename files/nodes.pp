@@ -11,4 +11,12 @@ node /^puppetagent\d+$/ {
 # Puppet Master Server
 node 'puppetmaster.osuk-puppet-lab.org' {
   notify { $message: }
+
+  # install puppetdb
+  class { 'puppetdb::globals':
+    version => '2.3.7-1.el6',
+  }
+  class { 'puppetdb' : }
+  class { 'puppetdb::master::config' : }
+
 }

@@ -34,14 +34,9 @@ file {'/etc/puppet/manifests/site.pp':
   source  => "${config_dir}/site.pp"
 }
 
-file {'/etc/puppet/environments/production/manifests/nodes.pp':
+file {'/etc/puppet/environments/production/manifests':
   ensure  => link,
-  target  => "/etc/puppet/manifests/nodes.pp"
-}
-
-file {'/etc/puppet/environments/production/manifests/site.pp':
-  ensure  => link,
-  target  => "/etc/puppet/manifests/site.pp"
+  target  => "/etc/puppet/manifests"
 }
 service {'puppetmaster':
   ensure => running
