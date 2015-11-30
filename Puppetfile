@@ -1,13 +1,7 @@
 forge "http://forge.puppetlabs.com"
 
 # Modules from the Puppet Forge
-mod 'puppetlabs/inifile', "1.1.3"
-mod 'puppetlabs/firewall', "1.1.3"
-mod 'puppetlabs/java', "1.3.0"
-mod 'puppetlabs/postgresql', "4.0.0"
-mod "puppetlabs/puppetdb"
-mod 'puppetlabs/stdlib', "4.5.1"
-mod "saz/vim"
+mod "puppetlabs/mysql"
 
 # Modules from Github using various references
 #mod 'oracle_fusion_middleware',
