@@ -5,9 +5,11 @@
 VAGRANTFILE_API_VERSION = "2"
 
 VMNAME = ENV['USERNAME'].downcase
-AGENT_BOX_MEM = "1024"
-BOX_URI = "box-cutter/oel66"
-SERVER_BOX_MEM = "2048"
+AGENT_BOX_MEM = "2048"
+#BOX_NAME = "default_OEL6.5"
+BOX_URI = "rchouinard/oracle-uek-65-x64"
+SERVER_BOX_MEM = "4096"
+CWD = "C:\Users\pbleeck\VirtualBox VMs"
 
 HOSTS_NO_PROXY = "localhost,127.0.0.0/8,puppetagent01,puppetagent02,puppetmaster"
 SOURCE_DIR = "/vagrant/src"
@@ -24,14 +26,18 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   (1..2).each do |i|
       config.vm.define "puppetagent0#{i}" do |puppetagent_config|
       puppetagent_config.vm.box = BOX_URI
-      puppetagent_config.vm.network :private_network, ip: "10.1.172.1#{i}"    
+      #puppetagent_config.vm.box_url = BOX_URI
+      puppetagent_config.vm.network :private_network, ip: "10.1.172.1#{i}"
+      puppetagent_config.vm.network :forwarded_port, guest: 22, host: "222#{i}", id: "ssh"
       puppetagent_config.vm.hostname = "puppetagent0#{i}.osuk-puppet-lab.org"
       puppetagent_config.vm.provider "virtualbox" do |v, override|
         v.name = "puppetagent0#{i}"
         v.gui = false
         v.customize ["modifyvm", :id, "--memory", AGENT_BOX_MEM]
         v.customize ["modifyvm", :id, "--ioapic", "on"]
-        v.customize ["modifyvm", :id, "--cpus", "1"]      
+        v.customize ["modifyvm", :id, "--cpus", "1"]
+        #v.customize ["createhd", "--filename", "puppetagent0#{i}.vmdk", "--size", "10240", "--format", "vmdk"]
+        #v.customize ['storageattach', :id, '--storagectl', 'IDE Controller', '--port', 1, '--device', 0, '--type', 'hdd', '--medium', "puppetagent0#{i}.vmdk"]
         override.proxy.enabled = false
       end
       puppetagent_config.vm.provision "shell",
@@ -40,14 +46,15 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       inline: "rpm -ivh http://yum.puppetlabs.com/puppetlabs-release-el-6.noarch.rpm;yum install -y puppet 3.7.4-1"
     end
   end
-        
+
   config.vm.define :puppetmaster do |puppetmaster_config|
     puppetmaster_config.vm.box = BOX_URI
     puppetmaster_config.vm.network :private_network, ip: "10.1.172.10"
+    puppetmaster_config.vm.network :forwarded_port, guest: 22, host: 2230, id: "ssh"
     puppetmaster_config.vm.hostname = "puppetmaster.osuk-puppet-lab.org"
     puppetmaster_config.vm.provider "virtualbox" do |v, override|
       v.name = "puppetmaster"
-      v.gui = true
+      v.gui = false
       v.customize ["modifyvm", :id, "--memory", SERVER_BOX_MEM]
       v.customize ["modifyvm", :id, "--ioapic", "on"]
       v.customize ["modifyvm", :id, "--cpus", "2"]
@@ -56,7 +63,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     puppetmaster_config.vm.provision "shell",
     inline: "yum install -y git;cd /tmp;git clone https://github.com/Bleecky/os-puppet-developer-lab.git"
     puppetmaster_config.vm.provision "shell",
-    inline: "rpm -ivh http://yum.puppetlabs.com/puppetlabs-release-el-6.noarch.rpm;yum install -y puppet-server 3.7.4-1;puppet module install zack/r10k"   
+    inline: "rpm -ivh http://yum.puppetlabs.com/puppetlabs-release-el-6.noarch.rpm;yum install -y puppet-server 3.7.4-1;puppet module install zack/r10k"
   end
   config.vm.provision :hosts do |provisioner|
     provisioner.add_host '10.1.172.10', ['puppetmaster.osuk-puppet-lab.org', 'puppet', 'puppetmaster']

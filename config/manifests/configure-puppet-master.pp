@@ -5,6 +5,7 @@ $config_dir = '/tmp/os-puppet-developer-lab/files/'
 file {'/etc/puppet/puppet.conf':
   ensure => present,
   source => "${config_dir}/puppet.conf",
+  notify => Service['puppetmaster']
 }
 
 file {'/etc/puppet/hiera.yaml':
@@ -16,28 +17,6 @@ file {['/etc/puppet/hieradata','/etc/puppet/hieradata/yaml']:
   ensure  => directory
 }
 
-file {'/etc/puppet/hieradata/yaml/puppetagent01.osuk-puppet-lab.org.yaml':
-  ensure  => present,
-}
-
-file {'/etc/puppet/hieradata/yaml/puppetagent02.osuk-puppet-lab.org.yaml':
-  ensure  => present,
-}
-
-file {'/etc/puppet/manifests/nodes.pp':
-  ensure  => present,
-  source  => "${config_dir}/nodes.pp"
-}
-
-file {'/etc/puppet/manifests/site.pp':
-  ensure  => present,
-  source  => "${config_dir}/site.pp"
-}
-
-file {'/etc/puppet/environments/production/manifests':
-  ensure  => link,
-  target  => "/etc/puppet/manifests"
-}
 service {'puppetmaster':
   ensure => running
 }
