@@ -1,2 +1,2 @@
 # Common settings for all servers
-import nodes.pp
+import 'nodes.pp'
