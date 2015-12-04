@@ -14,7 +14,5 @@ class { 'r10k':
       'basedir' => "${::settings::confdir}/environments",
       'prefix'  => false,
     }
-  },
-  #purgedirs         => ["${::settings::confdir}/environments"],
-  manage_modulepath => false,
+  }
 }
