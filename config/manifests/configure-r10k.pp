@@ -7,7 +7,6 @@
 ##  Beware! (and good luck!)
 
 class { 'r10k':
-  version           => '1.4.1',
   sources           => {
     'puppet' => {
       'remote'  => 'https://github.com/Bleecky/os-puppet-developer-lab',
@@ -15,6 +14,4 @@ class { 'r10k':
       'prefix'  => false,
     }
   },
-  #purgedirs         => ["${::settings::confdir}/environments"],
-  manage_modulepath => false,
 }
