@@ -3,13 +3,30 @@
 
 # Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
 VAGRANTFILE_API_VERSION = "2"
+PLUGINS=['vagrant-hosts', 'vagrant-proxyconf']
+
+missing = []
+PLUGINS.each { |plugin|
+  unless Vagrant.has_plugin?(plugin)
+    missing.push(plugin)
+  end
+}
+
+if missing.length > 0
+  puts
+  puts "Missing required plugin" + (missing.length > 1 ? "s" : "")
+  missing.each { |plugin|
+    puts "  " + plugin
+  }
+  exit 1
+end
 
 VMNAME = ENV['USERNAME'].downcase
 AGENT_BOX_MEM = "2048"
 #BOX_NAME = "default_OEL6.5"
 BOX_URI = "rchouinard/oracle-uek-65-x64"
 SERVER_BOX_MEM = "4096"
-CWD = "C:\Users\pbleeck\VirtualBox VMs"
+CWD = ENV['USERPROFILE'] + "\VirtualBox VMs"
 
 HOSTS_NO_PROXY = "localhost,127.0.0.0/8,puppetagent01,puppetagent02,puppetmaster"
 SOURCE_DIR = "/vagrant/src"
@@ -71,3 +88,4 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     provisioner.add_host '10.1.172.12', ['puppetagent02.osuk-puppet-lab.org', 'puppetagent02']
   end
 end
+
