@@ -32,3 +32,13 @@ You can connect to the virtual machines using an ssh client (putty), the default
 | puppetagent01 | localhost (127.0.0.1) | 2221 |
 | puppetagent02 | localhost (127.0.0.1) | 2222 |
 
+## Setup R10K on puppetmaster
+
+As root:
+
+```bash
+puppet apply /tmp/os-puppet-developer-lab/config/manifests/configure-puppet-master.pp
+/etc/init.d/puppetmaster restart
+puppet apply /tmp/os-puppet-developer-lab/config/manifests/configure-r10k.pp
+```
+
